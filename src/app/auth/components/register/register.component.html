@@ -1,0 +1,58 @@
+<div class="signup-wrap">
+  <mat-card style="width: 500px;">
+    <mat-card-header>
+        <mat-card-title style="font-size: 40px; padding-bottom: 20px;">Signup</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" (ngSubmit)="register($event)">
+      <mat-card-content [style.paddingLeft.px] = 10>
+        <!-- <div class="row">
+          <div class="col-xs">
+            <mat-form-field style="width: 95%" [style.fontSize.px] = 17 appearance="fill">
+              <mat-label><mat-icon>person</mat-icon> Name</mat-label>
+              <input formControlName="email" matInput type="email">
+            </mat-form-field>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field style="width: 95%" [style.fontSize.px] = 17 appearance="fill">
+              <mat-label><mat-icon>email</mat-icon> Email</mat-label>
+              <input formControlName="email" matInput type="email">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field style="width: 95%" [style.fontSize.px] = 17 appearance="fill">
+              <mat-label><mat-icon>password</mat-icon> Password *</mat-label>
+              <input formControlName="password" matInput [type]="hideFirst ? 'password' : 'text'" type="password">
+              <button mat-icon-button matSuffix (click)="hideFirst = !hideFirst" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideFirst">
+                <mat-icon>{{hideFirst ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-xs">
+            <mat-form-field style="width: 95%" [style.fontSize.px] = 17 appearance="fill">
+              <mat-label><mat-icon>password</mat-icon> Confirm your password *</mat-label>
+              <input formControlName="repeatPassword" matInput [type]="hideSecond ? 'password' : 'text'" type="password">
+              <button mat-icon-button matSuffix (click)="hideSecond = !hideSecond" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideSecond">
+                <mat-icon>{{hideSecond ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div> -->
+      </mat-card-content>
+      <mat-card-actions>
+        <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" [style.marginLeft.px] = 50>Registro</button>
+      </mat-card-actions>
+    </form>
+    <mat-card-content>
+      <mat-divider aria-orientation="horizontal"></mat-divider>
+      <mat-card-subtitle style="padding: 20px 0 0 40px;">
+        <a routerLink="/auth/login">Login</a>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+</div>

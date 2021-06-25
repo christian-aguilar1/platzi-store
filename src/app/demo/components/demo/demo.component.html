@@ -1,0 +1,36 @@
+<!-- Data binding -->
+<!-- <input type="text" [(ngModel)]="title"> -->
+
+<!-- String Interpolation -->
+{{ title }}
+
+<!-- <input type="text" [(ngModel)]="power"> -->
+<!-- {{ power | exponential }} -->
+
+
+<div *ngIf="title === 'nicolas'">
+  este es nicolas
+</div>
+<div *ngIf="title === 'julian'">
+  este es julian
+</div>
+<div *ngIf="title === 'chris'">
+  este es chris
+</div>
+
+<div [ngSwitch]='title'>
+  <p *ngSwitchCase="'nicolas'">este es nicolas</p>
+  <p *ngSwitchCase="'julian'">este es julian</p>
+  <p *ngSwitchCase="'chris'">este es chris</p>
+  <p *ngSwitchDefault>no hay match</p>
+</div>
+
+<button (click)='addItem()'>Add item</button>
+
+<ul>
+  <li *ngIf='items.length === 0'>La lista esta vacia</li>
+  <li *ngFor="let name of items; index as i">
+    {{ name }} {{ i }}
+    <button (click)="deleteItem(i)">Delete</button>
+  </li>
+</ul>

@@ -1,0 +1,16 @@
+<div *ngIf="product">
+    <div class="crop-image">
+        <img [src]="product.image" alt="">
+    </div>
+    <div>
+        <ul>
+            <li>Nombre: {{ product.name }}</li>
+            <li>Precio: {{ product.price | currency }}</li>
+        </ul>
+        <p>{{ product.description }}</p>
+        <p></p>
+    </div>
+    <button (click)="createProduct()">Crear</button>
+    <button (click)="updateProduct()">Editar valores</button>
+    <button (click)="deleteProduct()">Borrar</button>
+</div>

@@ -1,0 +1,37 @@
+<div class="login-wapper">
+  <mat-card class="mat-focus-indicator box" style="width: 500px;">
+    <mat-card-header>
+        <mat-card-title style="font-size: 40px; padding-bottom: 20px;">Login</mat-card-title>
+        <mat-card-subtitle>Sign in to your account to continue.</mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="form" (ngSubmit)="login($event)">
+      <mat-card-content [style.paddingLeft.px] = 10>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field style="width: 95%" [style.fontSize.px] = 17 appearance="fill">
+              <mat-label><mat-icon>email</mat-icon> Enter your email</mat-label>
+                <input formControlName="email" matInput type="email">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field style="width: 95%" [style.fontSize.px] = 17 appearance="fill">
+              <mat-label><mat-icon>password</mat-icon> Enter your password</mat-label>
+                <input formControlName="password" matInput type="password">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+          <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" [style.marginLeft.px] = 30>Ingresar</button>
+      </mat-card-actions>
+    </form>
+    <mat-card-content>
+      <mat-divider aria-orientation="horizontal"></mat-divider>
+      <mat-card-subtitle style="padding-top: 20px;">
+        <a routerLink="/auth/register">SignUp</a>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+</div>

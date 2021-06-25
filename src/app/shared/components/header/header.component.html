@@ -1,0 +1,46 @@
+<!-- <header>
+  <mat-toolbar color="primary" style="padding-left: 40px;">
+    <mat-toolbar-row class="row between-xs">
+      <nav>
+        <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+        <a mat-button routerLink="/products" routerLinkActive="active">Products</a>
+        <a mat-button routerLink="/contact" routerLinkActive="active">Contact</a>
+      </nav>
+      <span class="spacer"></span>
+      <div class="header-right">
+        <a mat-button routerLink="/admin" routerLinkActive="active">Sing In</a>
+        <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
+          <mat-icon>shopping_cart</mat-icon>
+          Carrito
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Platzi Store</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/products" routerLinkActive="active">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active">Contact</a>
+        </li>
+      </ul>
+      <a class="login" aria-current="page" routerLink="/auth/login" routerLinkActive="active">Log In</a>
+      <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
+        <mat-icon>shopping_cart</mat-icon>
+        Carrito
+      </a>
+    </div>
+  </div>
+</nav>
