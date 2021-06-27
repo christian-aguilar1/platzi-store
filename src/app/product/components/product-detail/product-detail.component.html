@@ -1,16 +1,16 @@
-<div *ngIf="product">
+<div *ngIf="products">
     <div class="crop-image">
-        <img [src]="product.image" alt="">
+        <img [src]="image" [alt]="products.name">
     </div>
     <div>
         <ul>
-            <li>Nombre: {{ product.name }}</li>
-            <li>Precio: {{ product.price | currency }}</li>
+            <li>Nombre: {{ products.name }}</li>
+            <li>Precio: {{ products.price | currency }}</li>
         </ul>
-        <p>{{ product.description }}</p>
+        <p>{{ products.description }}</p>
         <p></p>
     </div>
-    <button (click)="createProduct()">Crear</button>
+    <!-- <button (click)="createProduct()">Crear</button>
     <button (click)="updateProduct()">Editar valores</button>
-    <button (click)="deleteProduct()">Borrar</button>
+    <button (click)="deleteProduct()">Borrar</button> -->
 </div>

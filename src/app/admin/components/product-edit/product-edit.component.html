@@ -1,41 +1,60 @@
 <form [formGroup]="form" (ngSubmit)="saveProduct($event)">
-    <mat-card>
+    <mat-card style="margin: 20px;">
         <mat-card-header>
             <mat-card-title>Producto</mat-card-title>
+            <mat-card-subtitle>
+              El producto a editar será: <b>{{ product.name }} (id {{ product.id }})</b>
+            </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <div class="row">
-                <div class="col-xs">
-                    <mat-form-field>
-                        <input placeholder="Titulo" formControlName="title" matInput type="text">
-                    </mat-form-field>
+          <p>Qué campo/s del producto desea editar?</p>
+          <mat-form-field appearance="fill">
+            <mat-label>Producto</mat-label>
+            <mat-select [formControl]="productsForm" multiple>
+              <mat-option *ngFor="let product of productsList" [value]="product.value">{{product.viewValue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="row" *ngIf="checkOption('name')">
+            <div class="col-xs">
+                <mat-form-field>
+                    <input placeholder="Titulo" formControlName="name" matInput type="text">
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="row" *ngIf="checkOption('description')">
+            <div class="col-xs">
+                <mat-form-field>
+                    <input placeholder="Descripción" formControlName="description" matInput type="text">
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="row" *ngIf="checkOption('price')">
+            <div class="col-xs">
+                <mat-form-field>
+                    <input placeholder="Precio" formControlName="price" matInput type="number">
+                </mat-form-field>
+                <div *ngIf="priceField.errors && priceField.dirty ">
+                    <mat-error *ngIf="priceField.hasError( 'price_invalid') ">
+                        Este campo no es valido
+                    </mat-error>
+                    <mat-error *ngIf="priceField.hasError( 'required') ">
+                        El campo es requerido
+                    </mat-error>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs">
-                    <mat-form-field>
-                        <textarea placeholder="Descripcion" formControlName="description" matInput name=""></textarea>
-                    </mat-form-field>
-                </div>
+          </div>
+          <div class="row" *ngIf="checkOption('image')" style="margin-bottom: 20px;">
+            <div class="col-xs">
+              <img *ngIf="(image$ | async) as image" [src]="image" alt="">
+              <!-- <button mat-raised-button color="primary" type="file" (change)="uploadFile($event)"></button> -->
+              <input type="file" (change)="uploadFile($event)">
             </div>
-            <div class="row">
-                <div class="col-xs">
-                    <mat-form-field>
-                        <input placeholder="Precio" formControlName="price" matInput type="number">
-                    </mat-form-field>
-                    <div *ngIf="priceField.errors && priceField.dirty ">
-                        <mat-error *ngIf="priceField.hasError( 'price_invalid') ">
-                            Este campo no es valido
-                        </mat-error>
-                        <mat-error *ngIf="priceField.hasError( 'required') ">
-                            El campo es requerido
-                        </mat-error>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <mat-error *ngIf="isValid === false">Debe Seleccionar al menos un campo y llenarlo</mat-error>
         </mat-card-content>
         <mat-card-actions>
-            <button [disabled]="form.invalid " mat-raised-button type="submit ">Guardar</button>
+          <!-- [disabled]="form.invalid " -->
+            <button [disabled]="form.invalid " mat-raised-button color="primary" type="submit ">Guardar</button>
         </mat-card-actions>
     </mat-card>
 </form>

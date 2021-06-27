@@ -13,6 +13,7 @@ export class ProductsComponent implements OnInit {
 
   // products: Product[] = [];
   public products = [] as  any;
+  public idDocs = [] as  any;
 
   constructor(private productsService: ProductsService, private firestoreService: FirestoreService) { }
 
@@ -21,6 +22,9 @@ export class ProductsComponent implements OnInit {
       this.products = [];
       productsSnapshot.forEach((doc) => {
         this.products.push(doc.data());
+        this.idDocs.push(doc.id);
+        // console.log(this.products);
+        // console.log(this.idDocs)
       });
     });
     // this.fetchProducts();

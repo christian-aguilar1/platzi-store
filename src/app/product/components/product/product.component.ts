@@ -20,26 +20,24 @@ export class ProductComponent implements OnInit {
 
   @Input()
   product!: Product;
-  image!: Observable<any>;
+  @Input() idDoc!: string;
+  image!: string;
   @Output() productClicked: EventEmitter<any> = new EventEmitter();
 
   today = new Date();
 
   constructor(private cartService: CartService, private storage: AngularFireStorage) {
-    // console.log('1. constructor')
+    // console.log(this.idDoc);
   }
 
   ngOnInit(): void {
     // console.log('3. ngOnInit');
-  }
-
-  uploadFile() {
-    const pathReference = this.storage.ref('image/' + this.product.image);
-    const fileRef = this.storage.ref('image/' + this.product.image);
-    this.image = fileRef.getDownloadURL();
-    this.image.subscribe(url => {
-      console.log(url);
+    const fileRef = this.storage.ref(this.product.image);
+    const imageRef = fileRef.getDownloadURL();
+    imageRef.subscribe(url => {
+      this.image = url;
     })
+    // console.log("this.idDoc", this.idDoc);
   }
 
   addCart() {

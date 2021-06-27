@@ -10,7 +10,7 @@
     <mat-card *ngFor="let product of (products | deleteRepeats) as productsWithoutDuplicates">
       <div *ngIf="(1 | repeatNumber: product:products) as count">
         <mat-card-header>
-          <img mat-card-avatar [src]="product.image">
+          <img mat-card-avatar [src]="images[product.image]" [alt]="images[product.image]">
           <mat-card-title>{{ product.name }} ({{ 1 | repeatNumber: product:products }})</mat-card-title>
           <mat-card-subtitle>{{ product.price * count | currency }}</mat-card-subtitle>
         </mat-card-header>

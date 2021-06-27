@@ -8,21 +8,25 @@ import { Observable } from 'rxjs';
 
 export class FirestoreService {
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private db: AngularFirestore) {}
 
-  public createProduct(data: {id: number, name: string, description: string, price: number, image: string}) {
-    return this.firestore.collection('product').add(data);
+  public createProduct(documentId: string, data: {id: number, name: string, description: string, price: number, image: string}) {
+    return this.db.collection('product').doc(documentId).set(data);
   }
 
   public getProduct(documentId: string) {
-    return this.firestore.collection('product').doc(documentId).snapshotChanges();
+    return this.db.collection('product').doc(documentId).get();
   }
 
   public getProducts() {
-    return this.firestore.collection('product').get();
+    return this.db.collection('product').get();
   }
 
   public updateProduct(documentId: string, data: any) {
-    return this.firestore.collection('product').doc(documentId).set(data);
+    return this.db.collection('product').doc(documentId).set(data);
+  }
+
+  public deleteProduct(documentId: string) {
+    return this.db.collection('product').doc(documentId).delete();
   }
 }

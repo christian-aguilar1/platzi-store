@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/core/models/product.model';
@@ -11,13 +12,31 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class OrderComponent implements OnInit {
   products$!: Observable<Product[]>;
+  public images = {} as  any;
   firstFormGroup: FormGroup;
+  id!: number;
 
   constructor(
     private _cartService: CartService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private storage: AngularFireStorage
   ) {
     this.products$ = this._cartService.cart$;
+    this.products$.subscribe((productsSnapshot) => {
+      console.log("productsSnapshot", productsSnapshot)
+      productsSnapshot.forEach((doc) => {
+        const fileRef = this.storage.ref(doc.image);
+        const imagesRef = fileRef.getDownloadURL();
+        imagesRef.subscribe(url => {
+          // this.images.push({(doc.image): url});
+          let temp = doc.image
+          this.images[temp] = url;
+          // console.log("doc", doc)
+          // console.log("url", url)
+        })
+      });
+    });
+    console.log("this.images", this.images)
     this.firstFormGroup = {} as FormGroup;
   }
 
